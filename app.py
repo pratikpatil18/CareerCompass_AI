@@ -9,7 +9,7 @@ from fastapi.templating import Jinja2Templates
 import re
 
 # ================= CONFIG ==================
-API_KEY = "YOUR_API_KEY_HERE"
+API_KEY = "AIzaSyC3V6H8Fx8MjmJ25UhZaOJvMoCdtdoqrqI"
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
