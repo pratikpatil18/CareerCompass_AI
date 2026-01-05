@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-2xl mx-auto bg-white rounded-3xl shadow-2xl p-8 lg:p-12 border border-gray-100">
+
+        <h1 class="text-4xl lg:text-5xl font-extrabold text-gray-900 text-center mb-2 tracking-tight">
+            CareerCompass
+        </h1>
+        <p class="text-center text-gray-500 mb-8 max-w-lg mx-auto">
+            Upload your resume to get started.
+        </p>
+
+        <form action="/" method="POST" enctype="multipart/form-data" class="space-y-6">
+            
+            <div>
+                <label for="resumeFile" class="block text-sm font-medium text-gray-700 mb-1">Resume File (PDF only)</label>
+                <input type="file" name="resumeFile" id="resumeFile" accept=".pdf" required class="w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-5 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition">
+            </div>
+            
+            {% if error %}
+                <div class="p-4 bg-red-100 text-red-700 rounded-xl text-center">
+                    <strong>Error:</strong> {{ error }}
+                </div>
+            {% endif %}
+
+            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-bold py-4 px-10 rounded-full shadow-xl hover:from-blue-700 hover:to-indigo-800 transition-all duration-300 transform hover:scale-105">
+                Analyze My Resume
+            </button>
+        </form>
+
+    </div>
+
+</body>
+</html>
