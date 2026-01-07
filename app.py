@@ -8,16 +8,15 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 import re
 
-# ================= CONFIG ==================
+
 API_KEY = "YOUR_API_KEY_HERE"
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# ================= FASTAPI =================
+
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
-# ================= LOAD EXCEL =================
 def load_company_data(filepath="company_data_no_duplicates.xlsx"):
     try:
         df = pd.read_excel(filepath).fillna("")
@@ -40,7 +39,6 @@ COURSE_LINKS = {
     "SQL": "https://www.coursera.org/learn/sql-for-data-science"
 }
 
-# ================= CORE FUNCTIONS =================
 
 
 def extract_json(text):
@@ -83,7 +81,6 @@ def call_generative_api(prompt):
         raw = r.json()["candidates"][0]["content"]["parts"][0]["text"]
         raw = raw.replace("```json", "").replace("```", "").replace("`", "").strip()
 
-        # Extract first valid JSON object from response
         start = raw.find("{")
         end = raw.rfind("}") + 1
         if start == -1 or end == -1:
@@ -132,7 +129,6 @@ def generate_report(resume, company):
     return call_generative_api(prompt)
 
 
-# ================= ROUTES =================
 
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
